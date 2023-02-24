@@ -10,7 +10,7 @@ public class Main {
         int c = scan.nextInt();
         int n0 = scan.nextInt();
 
-        for(Long n = new Long(n0) ; n < 10000 ; n++){
+        for(int n = n0 ; n < 10000 ; n++){
 
             if(a1*n+a0 <= c*n){
                 continue;
