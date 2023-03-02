@@ -1,33 +1,26 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.io.*;
 
 public class Main {
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 
-    public static void main(String[] args) throws IOException {
-        int n = Integer.parseInt(br.readLine());
-        int[] arr = new int[100001];
+		int N = Integer.parseInt(br.readLine());
 
-        for(int i = 0 ; i < n ; i++){
-            arr[Integer.parseInt(br.readLine())]++;
-        }
-        for(int i = 1 ; i < arr.length ; i++){
-            if(arr[i]==0) continue;
-            while(true){
-                bw.write(i+"\n"); //담아두기
-                n--;
-                arr[i]--;
-                if(arr[i]==0) break;
-            }
-            if(n==0) break;
-        }
-        bw.flush(); //출력
-        bw.close(); //닫기
-    }
+		int count[] = new int[10001];
+		for(int i=0; i<N; i++) {
+			count[Integer.parseInt(br.readLine())]++;
+		}
+
+		for(int i=1; i<10001; i++) {
+			while(count[i] > 0) {
+				sb.append(i).append('\n');
+				count[i]--;
+                N--;
+			}
+            if(N==0) break;
+		}
+
+		System.out.println(sb);
+	}
 }
