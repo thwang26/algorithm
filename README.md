@@ -1,4 +1,5 @@
 # 백준 문제풀이
-[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fthwang%2Fhit-counter&count_bg=%23338CDB&title_bg=%23555555&icon=&icon_color=%23340F0F&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-lang : C, Java
+사용한 언어 : C, Java
+
+<a href="https://chrome.google.com/webstore/detail/%EB%B0%B1%EC%A4%80%ED%97%88%EB%B8%8Cbaekjoonhub/ccammcjdkpgjmcpijpahlehmapgmphmk?hl=ko">맞춘 백준문제를 자동커밋 해 주는 확장프로그램</a>
