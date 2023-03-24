@@ -31,14 +31,14 @@ public class Main {
 
         int L = Integer.parseInt(scan.nextLine());
         String[] str = scan.nextLine().split("");
-        int[] arr = new int[str.length];
+        long[] arr = new long[str.length];
         long sum = 0;
 
         for(int i = 0 ; i < str.length ; i++){
-            arr[i] = (int)str[i].charAt(0)-96;
+            arr[i] = str[i].charAt(0)-96L;
         }
         for(int i = 0 ; i < L ; i++){
-            sum += arr[i]*Math.pow(31, i);
+            sum = sum + arr[i]*(long)Math.pow(31, i);
         }
         System.out.println(sum);
     }
