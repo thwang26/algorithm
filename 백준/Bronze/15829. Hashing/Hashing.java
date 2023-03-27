@@ -22,24 +22,21 @@ import java.util.Stack;
 import java.util.Arrays;
 
 public class Main {
-    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    static BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-    //백준
-    public static void main(String[] args) throws IOException {
-        Scanner scan = new Scanner(System.in);
-
-        int L = Integer.parseInt(scan.nextLine());
-        String[] str = scan.nextLine().split("");
-        long[] arr = new long[str.length];
-        long sum = 0;
-
-        for(int i = 0 ; i < str.length ; i++){
-            arr[i] = str[i].charAt(0)-96L;
-        }
-        for(int i = 0 ; i < L ; i++){
-            sum = sum + arr[i]*(long)Math.pow(31, i);
-        }
-        System.out.println(sum);
-    }
+	static final int M = 1234567891;
+	
+	public static void main(String[] args) throws IOException {
+		BufferedReader bw = new BufferedReader(new InputStreamReader(System.in));
+		int L = Integer.parseInt(bw.readLine());
+		String str = new String(bw.readLine());
+		long sum = 0;
+		long pow = 1;
+		char[] arr = str.toCharArray();
+		for(int i = 0; i < L; i++)
+		{
+			sum += (arr[i] - 'a' + 1) * pow % M; //분배법칙
+			pow = pow * 31 % M; //분배법칙
+		}
+		long hash = sum % M;
+		System.out.println(hash);
+	}
 }
