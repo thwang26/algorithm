@@ -3,10 +3,10 @@ class Solution {
         int answer;
         int i = n + 1;
         
+        int number = getOneCount(Integer.toBinaryString(n));
         while (true) {
             String index = Integer.toBinaryString(i);
-            String number = Integer.toBinaryString(n);
-            if (getOneCount(index) == getOneCount(number)) {
+            if (getOneCount(index) == number) {
                 answer = i;
                 break;
             }
