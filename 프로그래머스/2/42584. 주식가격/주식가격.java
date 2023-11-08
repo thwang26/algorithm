@@ -2,6 +2,7 @@ import java.util.Stack;
 
 class Solution {
     public int[] solution(int[] prices) {
+        // 스택에 인덱스 넣어서 사용
         Stack<Integer> stack = new Stack<>();
         int[] answer = new int[prices.length];
 
