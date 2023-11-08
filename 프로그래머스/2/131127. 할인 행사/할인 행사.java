@@ -3,6 +3,7 @@ import java.util.Map;
 
 class Solution {
     public int solution(String[] want, int[] number, String[] discount) {
+        // 슬라이딩 윈도우 사용
         Map<String, Integer> wantMap = new HashMap<>();
 
         for (int i = 0; i < want.length; i++) {
