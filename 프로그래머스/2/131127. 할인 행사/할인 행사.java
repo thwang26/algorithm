@@ -23,15 +23,11 @@ class Solution {
                 count++;
             }
 
-            if (endIdx + 1 == discount.length) {
-                break;
-            }
-
             if (wantMap.containsKey(discount[startIdx])) {
                 wantMap.put(discount[startIdx], wantMap.get(discount[startIdx]) + 1);
             }
 
-            if (wantMap.containsKey(discount[endIdx + 1])) {
+            if (endIdx + 1 != discount.length && wantMap.containsKey(discount[endIdx + 1])) {
                 wantMap.put(discount[endIdx + 1], wantMap.get(discount[endIdx + 1]) - 1);
             }
 
