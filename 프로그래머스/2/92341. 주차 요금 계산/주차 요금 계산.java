@@ -15,9 +15,13 @@ class Solution {
         unitTime = fees[2];
         feePerUnitTime = fees[3];
 
-        calculateTime(records);
-        calculateFees();
+        calculateTime(records); // 주차시간 계산
+        calculateFees(); // 주차시간에 따른 요금 계산
 
+        return getAnswer(result);
+    }
+
+    public int[] getAnswer(List<Integer> result) {
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
@@ -34,11 +38,8 @@ class Solution {
                     : recordsMap.getOrDefault(carNumber, 0) + recordTime);
         }
 
-        for (Map.Entry<String, Integer> entry : recordsMap.entrySet()) {
-            if (entry.getValue() <= 0) {
-                recordsMap.put(entry.getKey(), recordsMap.get(entry.getKey()) + LAST_TIME);
-            }
-        }
+        recordsMap.replaceAll((key, value) -> value <= 0 ? value + LAST_TIME : value);
+        // 23:59 출차 계산
     }
 
     public int getTime(int hour, int minute) {
