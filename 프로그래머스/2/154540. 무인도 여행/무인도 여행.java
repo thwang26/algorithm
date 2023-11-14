@@ -13,7 +13,7 @@ class Solution {
         for (int y = 0; y < maps.length; y++) {
             for (int x = 0; x < maps[0].length(); x++) {
                 if (!isX(maps, x, y) && !isVisited(visited, x, y)) {
-                    int islandSum = exploreIsland(maps, visited, x, y);
+                    int islandSum = findIsland(maps, visited, x, y);
                     list.add(islandSum);
                 }
             }
@@ -23,7 +23,7 @@ class Solution {
         return listToArray();
     }
 
-    public int exploreIsland(String[] maps, boolean[][] visited, int startX, int startY) {
+    public int findIsland(String[] maps, boolean[][] visited, int startX, int startY) {
         Queue<Coordinate> queue = new LinkedList<>();
         int islandSum = 0;
 
