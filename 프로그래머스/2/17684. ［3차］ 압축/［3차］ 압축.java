@@ -11,15 +11,13 @@ class Solution {
             map.put(String.valueOf((char) i), i - 'A' + 1);
         }
 
-
-        String c;
         int idx = 0;
-        List<Integer> list = new ArrayList<>();
         int lastNumber = 26;
+        List<Integer> list = new ArrayList<>();
         while (idx < msg.length()) {
             String w = String.valueOf(msg.charAt(idx++));
             while (idx < msg.length()) {
-                c = String.valueOf(msg.charAt(idx));
+                String c = String.valueOf(msg.charAt(idx));
                 if (map.containsKey(w + c)) {
                     w += c;
                     idx++;
