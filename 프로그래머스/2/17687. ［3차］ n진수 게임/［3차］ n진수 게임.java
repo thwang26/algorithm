@@ -15,6 +15,7 @@ class Solution {
                 order = increaseOrder(order, m);
                 continue;
             }
+            
             answer += currentString.substring(0, 1);
             currentString = currentString.substring(1);
             order = increaseOrder(order, m);
