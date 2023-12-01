@@ -1,24 +1,14 @@
 class Solution {
     public int solution(int storey) {
-        int five = 5;
-        int ten = 10;
         int count = 0;
         while (storey != 0) {
-            int firstNumber = getFirstNumber(storey);
+            int firstNumber = storey % 10;
             storey = storey / 10;
+            int upperNumber = storey % 10;
 
-            if (firstNumber > five) {
-                count += (ten - firstNumber);
+            if (firstNumber > 5 || firstNumber == 5 && upperNumber >= 5) {
+                count += (10 - firstNumber);
                 storey++;
-                continue;
-            }
-            if (firstNumber == five) {
-                if (getFirstNumber(storey) >= five) {
-                    count += (ten - firstNumber);
-                    storey++;
-                } else {
-                    count += firstNumber;
-                }
                 continue;
             }
             count += firstNumber;
@@ -26,8 +16,4 @@ class Solution {
 
         return count;
     }
-
-    public int getFirstNumber(int number) {
-        return number % 10;
-    } // 1의 자리수 찾기
 }
