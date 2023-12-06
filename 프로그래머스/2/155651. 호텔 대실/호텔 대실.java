@@ -12,14 +12,9 @@ class Solution {
                 }
         );
 
-        for (String[] timeArr: book_time) {
-            int hour = Integer.parseInt(timeArr[0].substring(0, 2)) * 60;
-            int minute = Integer.parseInt(timeArr[0].substring(3));
-            pq.add(new Room(hour + minute, 1));
-
-            int outHour = Integer.parseInt(timeArr[1].substring(0, 2)) * 60;
-            int outMinute = Integer.parseInt(timeArr[1].substring(3)) + 10;
-            pq.add(new Room(outHour + outMinute, 0));
+        for (String[] timeArr : book_time) {
+            pq.add(new Room(parseTime(timeArr[0]), 1));
+            pq.add(new Room(parseTime(timeArr[1]) + 10, 0));
         }
 
         int maxCount = Integer.MIN_VALUE;
@@ -37,6 +32,12 @@ class Solution {
         }
 
         return maxCount;
+    }
+
+    public int parseTime(String time) {
+        int hour = Integer.parseInt(time.substring(0, 2)) * 60;
+        int minute = Integer.parseInt(time.substring(3));
+        return hour + minute;
     }
 
     static class Room {
