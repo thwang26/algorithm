@@ -3,21 +3,18 @@ import java.util.Stack;
 
 class Solution {
     public int solution(String s) {
-        if (s.length() == 1) {
+        int n = s.length();
+        if (n == 1) {
             return 1;
         }
-        int minLength = Integer.MAX_VALUE;
 
-        for (int chunkSize = 1; chunkSize <= s.length() / 2; chunkSize++) {
+        int minLength = Integer.MAX_VALUE;
+        for (int chunkSize = 1; chunkSize <= n / 2; chunkSize++) {
             Stack<Map.Entry<String, Integer>> stack = new Stack<>();
             StringBuilder str = new StringBuilder();
-            for (int j = 0; j < s.length(); j += chunkSize) {
+            for (int j = 0; j < n; j += chunkSize) {
                 String currentStr;
-                if (j + chunkSize < s.length()) {
-                    currentStr = s.substring(j, j + chunkSize);
-                } else {
-                    currentStr = s.substring(j);
-                }
+                currentStr = s.substring(j, Math.min(j + chunkSize, n));
 
                 if (stack.isEmpty()) {
                     stack.push(Map.entry(currentStr, 1));
