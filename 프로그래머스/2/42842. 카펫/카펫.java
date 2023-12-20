@@ -1,16 +1,28 @@
 class Solution {
     public int[] solution(int brown, int yellow) {
-        int[] answer = new int[2];
-
-        for(int i = 1 ; i <= brown ; i++){
-            for(int j = 1; j <= yellow ; j++){
-                if(i*j==yellow && (i+2)*(j+2)==brown+yellow){
-                    answer[0]=j+2;
-                    answer[1]=i+2;
-                    return answer;
-                }
+        int b = 0;
+        while (true) {
+            int number = (int) (Math.pow(b, 2) - (2 + brown/2) * b + brown + yellow);
+            if (number == 0) {
+                break;
             }
+            b++;
         }
-        return answer;
+
+        return new int[]{(brown + yellow) / b, b};
     }
 }
+// B + Y = ab
+// Y = (a-2)(b-2)
+
+// Y = ab - 2a - 2b + 4
+// B = 2a + 2b - 4
+
+// Y = (a-2)(b-2)
+// B = 2a + 2b - 4
+
+// a = B/2 - b + 2
+// Y = (B/2 - b + 2 - 2)(b - 2)
+// Y = (B/2 - b)(b - 2)
+// Y = (B/2)b - B - b^2 -2b
+// 0 = b^2 - (2+B/2)b + B + Y
