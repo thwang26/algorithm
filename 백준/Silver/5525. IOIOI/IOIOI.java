@@ -23,24 +23,21 @@ public class Main {
     }
 
     private void logic() {
-        String IOI = makeIOI();
-        int IOILength = IOI.length();
         int idx = 0;
         int count = 0;
-        while (idx + IOILength <= e.m) {
-            if (e.s.substring(idx, idx + IOILength).equals(IOI)) {
-                count++;
+        while (idx <= e.m) {
+            if (e.s.startsWith("IOI", idx)) {
                 idx += 2;
+                count++;
+                if (count == e.n) {
+                    e.answer++;
+                    count--;
+                }
             } else {
                 idx++;
+                count = 0;
             }
         }
-
-        e.answer = count;
-    }
-
-    private String makeIOI() {
-        return "IO".repeat(e.n) + "I";
     }
 
     private void output() {
