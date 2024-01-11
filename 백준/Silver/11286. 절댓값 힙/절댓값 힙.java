@@ -1,4 +1,3 @@
-
 import java.util.PriorityQueue;
 import java.util.Scanner;
 
@@ -6,10 +5,12 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         PriorityQueue<Integer> pq = new PriorityQueue<>((o1, o2) -> {
-            if (Math.abs(o1) == Math.abs(o2)) {
+            int one = Math.abs(o1);
+            int two = Math.abs(o2);
+            if (one == two) {
                 return o1 - o2;
             }
-            return Math.abs(o1) - Math.abs(o2);
+            return one - two;
         });
 
         int n = sc.nextInt();
