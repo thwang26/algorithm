@@ -11,15 +11,15 @@ public class Main {
         n = sc.nextInt();
         m = sc.nextInt();
         arr = new boolean[n + 1];
-        if (m != 0) {
+        if (m > 0) {
             for (int i = 0; i < m; i++) {
                 arr[sc.nextInt()] = true;
             }
         }
 
-        dp = new int[n + 1][6];
+        dp = new int[n + 1][n + 1];
         for (int i = 0; i < dp.length; i++) {
-            for (int j = 0; j < 6; j++) {
+            for (int j = 0; j < dp.length; j++) {
                 dp[i][j] = -1;
             }
         }
