@@ -27,8 +27,7 @@ public class Main {
             Node node = findNode(pq, arr[i]);
 
             if (node == null) {
-                node = new Node(arr[i],
-                        new PriorityQueue<>(Comparator.comparing(o -> o.current)), i);
+                node = new Node(arr[i], i);
                 pq.add(node);
             }
             pq = node.chileNode;
@@ -58,9 +57,9 @@ public class Main {
         PriorityQueue<Node> chileNode;
         int depth;
 
-        public Node(String current, PriorityQueue<Node> chileNode, int depth) {
+        public Node(String current, int depth) {
             this.current = current;
-            this.chileNode = chileNode;
+            this.chileNode = new PriorityQueue<>(Comparator.comparing(o -> o.current));
             this.depth = depth;
         }
     }
