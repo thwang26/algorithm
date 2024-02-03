@@ -17,9 +17,9 @@ public class Main {
         }
 
         int count = 0;
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                for (int[] each : direction) {
+        for (int[] each : direction) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < m; j++) {
                     int x = j + each[0];
                     int y = i + each[1];
                     if (isIn(y, x, n, m)) {
