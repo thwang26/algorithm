@@ -45,17 +45,13 @@ public class Main {
                 int ny = current.y + each[1];
                 int nh = current.h + each[2];
 
-                if (isIn(nx, ny, nh, m, n, h) && !visited[ny][nx][nh] && box[ny][nx][nh] != -1) {
+                if (isIn(nx, ny, nh, m, n, h) && !visited[ny][nx][nh] && box[ny][nx][nh] == 0) {
                     visited[ny][nx][nh] = true;
+                    queue.add(new Tomato(nx, ny, nh, current.count + 1));
+                    unripeTomato--;
 
-                    if (box[ny][nx][nh] == 1) {
-                        queue.add(new Tomato(nx, ny, nh, current.count));
-                    } else {
-                        queue.add(new Tomato(nx, ny, nh, current.count + 1));
-                        unripeTomato--;
-                        if (unripeTomato == 0) {
-                            day = current.count + 1;
-                        }
+                    if (unripeTomato == 0) {
+                        day = current.count + 1;
                     }
 
                     box[ny][nx][nh] = 1;
