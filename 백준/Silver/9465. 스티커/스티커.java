@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -17,18 +16,14 @@ public class Main {
                 }
             }
 
-            int[][] dp = new int[2][n];
-            dp[0][0] = arr[0][0];
-            dp[1][0] = arr[1][0];
-
             for (int j = 1; j < n; j++) {
                 for (int i = 0; i < 2; i++) {
-                    dp[i][j] = Math.max(arr[i][j] + dp[i == 0 ? 1 : 0][j - 1],
-                            Math.max(dp[0][j - 1], dp[1][j - 1]));
+                    arr[i][j] = Math.max(arr[i][j] + arr[i == 0 ? 1 : 0][j - 1],
+                            Math.max(arr[0][j - 1], arr[1][j - 1]));
                 }
             }
 
-            System.out.println(Math.max(dp[0][n - 1], dp[1][n - 1]));
+            System.out.println(Math.max(arr[0][n - 1], arr[1][n - 1]));
         }
     }
 }
