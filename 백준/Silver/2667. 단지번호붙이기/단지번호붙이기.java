@@ -32,19 +32,19 @@ public class Main {
     }
 
     private static void find(int i, int j) {
-        Queue<Map.Entry<Integer, Integer>> queue = new LinkedList<>();
+        Queue<int[]> queue = new LinkedList<>();
 
-        queue.add(Map.entry(i, j));
+        queue.add(new int[]{i, j});
         int house = 1;
         while (!queue.isEmpty()) {
-            Map.Entry<Integer, Integer> each = queue.poll();
+            int[] each = queue.poll();
 
             for (int[] eachDirection : direction) {
-                int nx = each.getValue() + eachDirection[0];
-                int ny = each.getKey() + eachDirection[1];
+                int ny = each[0] + eachDirection[0];
+                int nx = each[1] + eachDirection[1];
 
                 if (isIn(nx, ny) && !visited[ny][nx] && arr[ny][nx] == 1) {
-                    queue.add(Map.entry(ny, nx));
+                    queue.add(new int[]{ny, nx});
                     visited[ny][nx] = true;
                     house++;
                 }
