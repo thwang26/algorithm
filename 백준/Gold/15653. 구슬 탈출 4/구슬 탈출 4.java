@@ -3,7 +3,6 @@ import java.util.Scanner;
 
 public class Main {
     static int minCount = Integer.MAX_VALUE;
-    static String finalWay;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -29,25 +28,18 @@ public class Main {
             }
         }
 
-        dfs(marbleBoard, 0, "", -1);
+        dfs(marbleBoard, 0, -1);
         System.out.println(minCount == Integer.MAX_VALUE ? -1 : minCount);
-
-//        if (!Objects.isNull(finalWay)) {
-//            System.out.println(finalWay);
-//        }
     }
 
-    static void dfs(MarbleBoard board, int count, String way, int before) {
+    static void dfs(MarbleBoard board, int count, int before) {
         // 다 되었는지
         if (board.blue.x == -1 && board.blue.y == -1) {
             return;
         }
 
         if (board.red.x == -1 && board.red.y == -1) {
-            if (count < minCount) {
-                minCount = count;
-                finalWay = way;
-            }
+            minCount = Math.min(minCount, count);
             return;
         }
 
@@ -69,7 +61,7 @@ public class Main {
             } // 무효횟수 무시
 
             if (count + 1 < minCount) {
-                dfs(copy, count + 1, way + i, i);
+                dfs(copy, count + 1, i);
             }
         }
     }
