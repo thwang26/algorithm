@@ -19,11 +19,11 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (marbleBoard.board[i][j].equals("R")) {
-                    marbleBoard.red = new MarbleBoard.Red(j, i);
+                    marbleBoard.red = new Marble(j, i, "R");
                 }
 
                 if (marbleBoard.board[i][j].equals("B")) {
-                    marbleBoard.blue = new MarbleBoard.Blue(j, i);
+                    marbleBoard.blue = new Marble(j, i, "B");
                 }
             }
         }
@@ -76,7 +76,7 @@ public class Main {
         }
     }
 
-    private static MarbleBoard copyBoard(MarbleBoard board) {
+    static MarbleBoard copyBoard(MarbleBoard board) {
         MarbleBoard copy = new MarbleBoard();
         String[][] arr = new String[board.board.length][board.board[0].length];
 
@@ -87,8 +87,8 @@ public class Main {
         }
 
         copy.board = arr;
-        copy.red = new MarbleBoard.Red(board.red.x, board.red.y);
-        copy.blue = new MarbleBoard.Blue(board.blue.x, board.blue.y);
+        copy.red = new Marble(board.red.x, board.red.y, "R");
+        copy.blue = new Marble(board.blue.x, board.blue.y, "B");
 
         return copy;
     }
@@ -131,81 +131,41 @@ public class Main {
         return true;
     }
 
-    interface Marble {
-        String getColor();
+    static class Marble {
+        int x;
+        int y;
+        String color;
 
-        int getX();
+        public Marble(int x, int y, String color) {
+            this.x = x;
+            this.y = y;
+            this.color = color;
+        }
 
-        int getY();
+        public String getColor() {
+            return color;
+        }
 
-        void setX(int x);
+        public int getX() {
+            return this.x;
+        }
 
-        void setY(int y);
+        public int getY() {
+            return this.y;
+        }
+
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        public void setY(int y) {
+            this.y = y;
+        }
     }
 
     static class MarbleBoard {
         String[][] board;
-        public MarbleBoard.Red red;
-        public MarbleBoard.Blue blue;
-
-        static class Red implements Marble {
-            int x;
-            int y;
-
-            public Red(int x, int y) {
-                this.x = x;
-                this.y = y;
-            }
-
-            public String getColor() {
-                return "R";
-            }
-
-            public int getX() {
-                return this.x;
-            }
-
-            public int getY() {
-                return this.y;
-            }
-
-            public void setX(int x) {
-                this.x = x;
-            }
-
-            public void setY(int y) {
-                this.y = y;
-            }
-        }
-
-        static class Blue implements Marble {
-            int x;
-            int y;
-
-            public Blue(int x, int y) {
-                this.x = x;
-                this.y = y;
-            }
-
-            public String getColor() {
-                return "B";
-            }
-
-            public int getX() {
-                return this.x;
-            }
-
-            public int getY() {
-                return this.y;
-            }
-
-            public void setX(int x) {
-                this.x = x;
-            }
-
-            public void setY(int y) {
-                this.y = y;
-            }
-        }
+        public Marble red;
+        public Marble blue;
     }
 }
