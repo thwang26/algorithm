@@ -44,7 +44,7 @@ public class Main {
         }
 
         // 횟수제한
-        if (count >= 25) {
+        if (count >= 24) {
             return;
         }
 
