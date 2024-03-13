@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public class Main {
     static int[][] direction = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
-    static String[][] arr;
+    static char[][] arr;
     static boolean[] visited = new boolean[26];
     static int maxCount;
 
@@ -12,12 +12,12 @@ public class Main {
         int n = sc.nextInt();
         int m = sc.nextInt();
 
-        arr = new String[n][];
+        arr = new char[n][];
         for (int i = 0; i < n; i++) {
-            arr[i] = sc.next().split("");
+            arr[i] = sc.next().toCharArray();
         }
 
-        visited[arr[0][0].toCharArray()[0] - 'A'] = true;
+        visited[arr[0][0] - 'A'] = true;
         dfs(0, 0, 1);
         System.out.println(maxCount);
     }
@@ -30,10 +30,10 @@ public class Main {
             int ny = y + each[1];
 
             if (isIn(nx, ny, arr.length, arr[0].length)
-                    && !visited[arr[ny][nx].toCharArray()[0] - 'A']) {
-                visited[arr[ny][nx].toCharArray()[0] - 'A'] = true;
+                    && !visited[arr[ny][nx] - 'A']) {
+                visited[arr[ny][nx] - 'A'] = true;
                 dfs(nx, ny, count + 1);
-                visited[arr[ny][nx].toCharArray()[0] - 'A'] = false;
+                visited[arr[ny][nx] - 'A'] = false;
             }
         }
     }
