@@ -13,14 +13,13 @@ public class Main {
             Node[] arr = new Node[n + 1];
 
             for (int i = 1; i <= n; i++) {
-                arr[i] = new Node(i, null, new ArrayList<>());
+                arr[i] = new Node(i, null);
             }
 
             for (int i = 1; i < n; i++) {
                 Node parent = arr[sc.nextInt()];
                 Node child = arr[sc.nextInt()];
 
-                parent.child.add(child);
                 child.parent = parent;
             }
 
@@ -54,12 +53,10 @@ public class Main {
     static class Node {
         int value;
         Node parent;
-        List<Node> child;
 
-        public Node(int value, Node parent, List<Node> child) {
+        public Node(int value, Node parent) {
             this.value = value;
             this.parent = parent;
-            this.child = child;
         }
     }
 }
