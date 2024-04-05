@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 import java.util.Scanner;
 
 public class Main {
     static int maxSafe = 0;
     static int[][] direction = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+    static List<Node> virus = new ArrayList<>();
     static int n;
     static int m;
 
@@ -17,7 +20,13 @@ public class Main {
 
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
-                map[i][j] = sc.nextInt();
+                int element = sc.nextInt();
+
+                if (element == 2) {
+                    virus.add(new Node(j, i));
+                }
+
+                map[i][j] = element;
             }
         }
 
@@ -38,7 +47,7 @@ public class Main {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (map[i][j] == 0) {
-                    map[i][j] = 4;
+                    map[i][j] = 1;
                     dfs(map, wall + 1);
                     map[i][j] = 0;
                 }
@@ -71,20 +80,14 @@ public class Main {
     }
 
     static void spread(int[][] arr) {
-        boolean[][] visited = new boolean[n][m];
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (!visited[i][j] && arr[i][j] == 2) {
-                    visited[i][j] = true;
-                    bfs(arr, visited, i, j);
-                }
-            }
+        for (Node each : virus) {
+            bfs(arr, each);
         }
     }
 
-    static void bfs(int[][] arr, boolean[][] visited, int i, int j) {
+    static void bfs(int[][] arr, Node node) {
         Queue<Node> queue = new LinkedList<>();
-        queue.add(new Node(j, i));
+        queue.add(node);
         while (!queue.isEmpty()) {
             Node current = queue.poll();
 
@@ -92,8 +95,7 @@ public class Main {
                 int nx = current.x + each[0];
                 int ny = current.y + each[1];
 
-                if (isIn(nx, ny, m, n) && !visited[ny][nx] && arr[ny][nx] == 0) {
-                    visited[ny][nx] = true;
+                if (isIn(nx, ny, m, n) && arr[ny][nx] == 0) {
                     arr[ny][nx] = 2;
                     queue.add(new Node(nx, ny));
                 }
