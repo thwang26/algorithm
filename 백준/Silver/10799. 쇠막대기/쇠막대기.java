@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.Stack;
 
 public class Main {
     public static void main(String[] args) {
@@ -17,23 +16,25 @@ public class Main {
     static class Factory {
         int cut = 0;
         int stick = 0;
-        Stack<Character> stack = new Stack<>();
+        boolean beforeOpen = false;
 
-        public Factory() {}
+        public Factory() {
+        }
 
         public void add(char c) {
             if (c == '(') {
                 stick++;
+                beforeOpen = true;
             } else {
-                if (stack.peek() == '(') {
-                    stick--;
+                stick--;
+
+                if (beforeOpen) {
                     cut += stick;
                 } else {
                     cut++;
-                    stick--;
                 }
+                beforeOpen = false;
             }
-            stack.add(c);
         }
     }
 }
