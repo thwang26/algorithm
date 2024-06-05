@@ -29,15 +29,13 @@ public class Main {
         int firstLetterIdx = getFirstLetterIdx(arr);
         if (firstLetterIdx != -1) {
             String change = arr[firstLetterIdx];
-            arr[firstLetterIdx] = "[" + change.charAt(0) + "]" + change.substring(1);
+            arr[firstLetterIdx] = parse(0, change);
             return String.join(" ", arr);
         }
 
         int remainLetterIdx = getRemainLetterIdx(str);
         if (remainLetterIdx != -1) {
-            return str.substring(0, remainLetterIdx)
-                    + "[" + str.charAt(remainLetterIdx) + "]"
-                    + str.substring(remainLetterIdx + 1);
+            return parse(remainLetterIdx, str);
         }
 
         return str;
@@ -67,5 +65,11 @@ public class Main {
         }
 
         return remainLetterIdx;
+    }
+    
+    private static String parse(int idx, String str) {
+        return str.substring(0, idx)
+                + "[" + str.charAt(idx) + "]"
+                + str.substring(idx + 1);
     }
 }
