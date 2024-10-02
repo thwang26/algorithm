@@ -17,7 +17,7 @@ public class Main {
             this.silver = silver;
             this.bronze = bronze;
         }
-
+        
         public int getGold() {
             return gold;
         }
@@ -59,7 +59,13 @@ public class Main {
 
         rateRank(list);
 
-        System.out.println(list.get(k - 1).realRank);
+        for (Country country : list) {
+            if (country.num == k) {
+                System.out.println(country.realRank);
+                return;
+            }
+        }
+
     }
 
     public static void rateRank(List<Country> country) {
