@@ -22,7 +22,7 @@ public class Main {
     }
 
     private static void makePassword(Password password, int idx) {
-        if (password.currentList.size() == l && canMake(password)) {
+        if (canMake(password)) {
             make(password);
         }
 
@@ -34,7 +34,7 @@ public class Main {
     }
 
     private static boolean canMake(Password password) {
-        return password.consonant >= 2 && password.vowel >= 1;
+        return password.currentList.size() == l && password.consonant >= 2 && password.vowel >= 1;
     }
 
     private static void make(Password password) {
