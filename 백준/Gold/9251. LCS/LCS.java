@@ -1,23 +1,30 @@
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        String str1 = sc.next();
-        String str2 = sc.next();
-        int[][] dp = new int[str1.length() + 1][str2.length() + 1];
+        String a = br.readLine();
+        String b = br.readLine();
 
-        for (int i = 1; i < dp.length; i++) {
-            for (int j = 1; j < dp[0].length; j++) {
-                if (str1.charAt(i - 1) == str2.charAt(j - 1)) {
-                    dp[i][j] += dp[i - 1][j - 1] + 1;
+        int[][] lcs = new int[a.length() + 1][b.length() + 1];
+        for (int i = 1; i < lcs.length; i++) {
+            for (int j = 1; j < lcs[0].length; j++) {
+                if (a.charAt(i - 1) == b.charAt(j - 1)) {
+                    lcs[i][j] += lcs[i - 1][j - 1] + 1;
                 } else {
-                    dp[i][j] = Math.max(dp[i - 1][j], dp[i][j - 1]);
+                    lcs[i][j] = Math.max(lcs[i - 1][j], lcs[i][j - 1]);
                 }
             }
         }
 
-        System.out.println(dp[str1.length()][str2.length()]);
+        bw.write(String.valueOf(lcs[a.length()][b.length()]));
+        bw.flush();
+        bw.close();
     }
 }
