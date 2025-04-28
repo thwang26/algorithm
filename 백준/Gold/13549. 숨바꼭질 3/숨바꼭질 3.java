@@ -1,60 +1,55 @@
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int a = sc.nextInt();
-        int b = sc.nextInt();
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
 
-        Queue<Subin> queue = new LinkedList<>();
-        queue.add(new Subin(a, 0));
-        int[] visited = new int[100001];
-        visited[a] = 0;
-        Arrays.fill(visited, Integer.MAX_VALUE);
-        int minCount = 100000;
-        while (!queue.isEmpty()) {
-            Subin current = queue.poll();
+        int[] arr = new int[100_001];
+        Arrays.fill(arr, Integer.MAX_VALUE);
 
-            if (current.n == b) {
-                minCount = Math.min(minCount, current.count);
+        Queue<Integer> pq = new LinkedList<>();
+        pq.add(n);
+        arr[n] = 0;
+        while (!pq.isEmpty()) {
+            int value = pq.poll();
+
+            if (value == k) {
                 continue;
             }
 
-            for (int each : new int[]{current.n + 1, current.n - 1, current.n * 2}) {
-                if (each < 0 || each > 100000) {
-                    continue;
-                }
-
-                if (visited[each] > current.count) {
-                    if (each == current.n * 2) {
-                        queue.add(new Subin(each, current.count));
-                        visited[each] = current.count;
-                    } else {
-                        queue.add(new Subin(each, current.count + 1));
-                        visited[each] = current.count + 1;
+            for (int each : new int[]{1, -1, value}) {
+                int next = each + value;
+                if (isIn(value + each)) {
+                    if (each == value && arr[next] > arr[value]) {
+                        arr[next] = arr[value];
+                        pq.add(next);
+                    } else if (arr[next] > arr[value] + 1) {
+                        arr[next] = arr[value] + 1;
+                        pq.add(next);
                     }
                 }
             }
-
-            if (current.n > b) {
-                queue.add(new Subin(b, current.count + current.n - b));
-            }
         }
 
-        System.out.println(minCount);
+        bw.write(String.valueOf(arr[k]));
+        bw.flush();
+        bw.close();
     }
 
-    static class Subin {
-        int n;
-        int count;
-
-        public Subin(int n, int count) {
-            this.n = n;
-            this.count = count;
-        }
+    private static boolean isIn(int i) {
+        return i >= 0 && i <= 100000;
     }
 }
