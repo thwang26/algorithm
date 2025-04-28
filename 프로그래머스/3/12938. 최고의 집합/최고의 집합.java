@@ -10,11 +10,7 @@ class Solution {
         int div = s / n;
         int[] arr = new int[n];
         for (int i = 0; i < n; i++) {
-            if (n - i <= mod) {
-                arr[i] = div + 1;
-            } else {
-                arr[i] = div;
-            }
+            arr[i] = div + (n - i <= mod ? 1 : 0);
         }
 
         return arr;
