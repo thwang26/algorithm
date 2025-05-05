@@ -37,13 +37,11 @@ public class Main {
         int v1 = Integer.parseInt(st.nextToken());
         int v2 = Integer.parseInt(st.nextToken());
 
-        int[] sArr = dijkstra(1);
         int[] v1Arr = dijkstra(v1);
         int[] v2Arr = dijkstra(v2);
 
-        // 1기준, v1기준, v2기준
-        int path1 = sumPath(sArr[v1], v1Arr[v2], v2Arr[n]);
-        int path2 = sumPath(sArr[v2], v2Arr[v1], v1Arr[n]);
+        int path1 = sumPath(v1Arr[1], v1Arr[v2], v2Arr[n]);
+        int path2 = sumPath(v2Arr[1], v2Arr[v1], v1Arr[n]);
         int minPath = Math.min(path1, path2);
         System.out.println(minPath == Integer.MAX_VALUE ? -1 : minPath);
     }
