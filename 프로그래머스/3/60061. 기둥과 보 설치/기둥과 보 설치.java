@@ -7,22 +7,22 @@ public class Solution {
     static int length;
 
     public int[][] solution(int n, int[][] buildFrame) {
-        arr = new boolean[n + 5][n + 5][2];
+        arr = new boolean[n + 3][n + 3][2];
         length = n;
 
         for (int[] each : buildFrame) {
-            Status status = new Status(each[1] + 2, each[0] + 2, each[3] == 1, each[2]);
+            Status status = new Status(each[1] + 1, each[0] + 1, each[3] == 1, each[2]);
             set(status);
         }
 
         List<int[]> list = new ArrayList<>();
-        for (int i = 2; i < arr.length - 2; i++) {
-            for (int j = 2; j < arr[0].length - 2; j++) {
+        for (int i = 1; i < arr.length - 1; i++) {
+            for (int j = 1; j < arr[0].length - 1; j++) {
                 for (int k = 0; k < 2; k++) {
                     if (!arr[i][j][k]) {
                         continue;
                     }
-                    list.add(new int[]{j - 2, i - 2, k});
+                    list.add(new int[]{j - 1, i - 1, k});
                 }
             }
         }
@@ -50,8 +50,8 @@ public class Solution {
     }
 
     private boolean valid() {
-        for (int i = 2; i < arr.length - 2; i++) {
-            for (int j = 2; j < arr[0].length - 2; j++) {
+        for (int i = 1; i < arr.length - 1; i++) {
+            for (int j = 1; j < arr[0].length - 1; j++) {
                 for (int k = 0; k < 2; k++) {
                     if (arr[i][j][k]) {
                         Status each = new Status(i, j, true, k);
@@ -69,7 +69,7 @@ public class Solution {
     }
 
     private boolean pillarCheck(Status status) {
-        return status.row == 2
+        return status.row == 1
                 || arr[status.row - 1][status.col][status.Pillar]
                 || arr[status.row][status.col - 1][status.Bo]
                 || arr[status.row][status.col][status.Bo];
