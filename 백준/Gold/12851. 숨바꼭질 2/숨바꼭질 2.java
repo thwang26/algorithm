@@ -28,10 +28,8 @@ public class Main {
 
             if (current == m) {
                 count++;
-                if (current < min) {
-                    min = current;
-                    continue;
-                }
+                min = current;
+                continue;
             }
 
             for (int each : new int[]{-1, 1, current}) {
